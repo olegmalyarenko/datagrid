@@ -1,7 +1,7 @@
 import './App.css';
 import * as ReactBootStrap from 'react-bootstrap';
-import React, { Component } from 'react'
-import Faker from 'faker'
+import React, { Component } from 'react';
+import Faker from 'faker';
 
 class App extends Component {
   constructor(props) {
@@ -15,8 +15,8 @@ class App extends Component {
     for (let i = 0; i < 1000; i++) {
       const user = {
         name: Faker.internet.userName(),
-        email: Faker.internet.email(),
-        date: Faker.date.weekday(),
+        boolean: Faker.random.boolean() ? 'Yes': 'No',
+        date: Faker.date.past(20).toUTCString(),
         country: Faker.address.country(),
         phone: Faker.phone.phoneNumber(),
         ip: Faker.internet.ip(),   
@@ -28,6 +28,8 @@ class App extends Component {
     }
   }
 
+ 
+
   renderUsers(user) {
     return (
       <tr>
@@ -36,7 +38,7 @@ class App extends Component {
         <td>{user.date}</td>
         <td>{user.country}</td>
         <td>{user.phone}</td>
-        <td>{user.mail}</td>
+        <td>{user.boolean}</td>
         <td>{user.ip}</td>
       </tr>
     )
@@ -45,7 +47,20 @@ class App extends Component {
   render() {
     return <ReactBootStrap.Table 
     striped bordered hover variant="dark">
+      <thead>
+    <tr>
+      <th>Name</th>
+      <th>City </th>
+      <th>Registration</th>
+      <th>Country</th>
+      <th>Phone</th>
+      <th>Active</th>
+      <th>IP</th>
+    </tr>
+  </thead>
+  <tbody>
       {this.state.users.map(user => this.renderUsers(user))}
+  </tbody>   
       </ReactBootStrap.Table>
   }
   
