@@ -2,6 +2,9 @@ import './App.css';
 import * as ReactBootStrap from 'react-bootstrap';
 import React, { Component } from 'react';
 import Faker from 'faker';
+import Table from './components/Table';
+//import  _  from 'lodash';
+const _ = require('lodash');
 
 class App extends Component {
   constructor(props) {
@@ -9,7 +12,10 @@ class App extends Component {
     this.state = {
       users: [],
     }
+    this.sortBy = this.sortBy.bind(this);
+    this.orderBy = this.orderBy.bind(this);
   }
+ 
 
   componentWillMount() {
     for (let i = 0; i < 1000; i++) {
@@ -24,44 +30,35 @@ class App extends Component {
       }
       this.setState(prevState => ({
         users: [...prevState.users, user],
+        
       }))
+      
     }
   }
+  
 
- 
-
-  renderUsers(user) {
-    return (
-      <tr>
-        <td>{user.name}</td>
-        <td>{user.city}</td>
-        <td>{user.date}</td>
-        <td>{user.country}</td>
-        <td>{user.phone}</td>
-        <td>{user.boolean}</td>
-        <td>{user.ip}</td>
-      </tr>
-    )
+  sortBy(key) {
+       
+      const array = [...this.state.users]; //приравниваю новый массив к стейту
+      const sortArr = _.sortBy(array, [key]);  //сортирую значения массива
+       this.setState ({ users: sortArr })   //приравниваю отрортированную коллекцию к стейту
+       console.log(this.state.users);
   }
- 
+  
+  orderBy(key) {
+       
+    const array = [...this.state.users]; 
+    const sortArr = _.orderBy(array, [key], ['desc']); 
+     this.setState ({ users: sortArr })   
+     console.log(this.state.users);
+}
+
   render() {
-    return <ReactBootStrap.Table 
-    striped bordered hover variant="dark">
-      <thead>
-    <tr>
-      <th>Name</th>
-      <th>City </th>
-      <th>Registration</th>
-      <th>Country</th>
-      <th>Phone</th>
-      <th>Active</th>
-      <th>IP</th>
-    </tr>
-  </thead>
-  <tbody>
-      {this.state.users.map(user => this.renderUsers(user))}
-  </tbody>   
-      </ReactBootStrap.Table>
+    return <Table   users={this.state.users}
+    sortBy={this.sortBy}
+    orderBy = {this.orderBy}
+    />
+
   }
   
 }
