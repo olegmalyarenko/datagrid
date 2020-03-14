@@ -2,7 +2,7 @@ import * as ReactBootStrap from 'react-bootstrap';
 import React, { Component } from 'react';
 import './Table.css';
 import Faker from 'faker';
-import SortButton from '../SortButton';
+import Search from '../Search';
 import { user } from  '../../App';
 
 class Table extends Component {
@@ -35,6 +35,16 @@ class Table extends Component {
             <button className="sortButton" onClick={ () => this.props.orderBy('name') } ><img src="https://icon-icons.com/icons2/10/PNG/32/arrowdown_flech_1539.png" alt="icon"/></button>
           </div>
           </div>
+          
+          
+          <div className="searchbar form-group">
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Search people by name..."
+        onChange={this.props.searchHandler}
+      />
+    </div>
           </th>
 
           <th>City </th>
@@ -85,7 +95,7 @@ class Table extends Component {
         </tr>
       </thead>
       <tbody>
-          {this.props.users.map(user => this.renderUsers(user))}
+          {this.props.users.filter(this.props.dataSearch(this.props.term)).map(user => this.renderUsers(user))}
       </tbody>   
           </ReactBootStrap.Table>
       }

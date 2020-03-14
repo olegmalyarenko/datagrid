@@ -6,14 +6,19 @@ import Table from './components/Table';
 //import  _  from 'lodash';
 const _ = require('lodash');
 
+
+  
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       users: [],
+      term: ''
     }
     this.sortBy = this.sortBy.bind(this);
     this.orderBy = this.orderBy.bind(this);
+    
+    this.searchHandler = this.searchHandler.bind(this);
   }
  
 
@@ -51,12 +56,35 @@ class App extends Component {
     const sortArr = _.orderBy(array, [key], ['desc']); 
      this.setState ({ users: sortArr })   
      console.log(this.state.users);
+     
 }
+dataSearch(term) {
+   
+  return function x (x) {
+    return x.name.toLowerCase().includes(term.toLowerCase()) || !term;
+  }
+}  
+  
 
+   
+
+
+ searchHandler (e) {
+  this.setState({
+    //users: filter,
+    term: e.target.value
+  });
+ }
+ 
   render() {
     return <Table   users={this.state.users}
+    value = {this.props.term}
     sortBy={this.sortBy}
     orderBy = {this.orderBy}
+    term={this.state.term}
+    dataSearch= {this.dataSearch}
+    searchHandler = {this.searchHandler}
+
     />
 
   }
