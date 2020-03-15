@@ -13,12 +13,14 @@ class App extends Component {
     super(props)
     this.state = {
       users: [],
-      term: ''
+      term: '',
+      cheeseIsReady: false,
     }
     this.sortBy = this.sortBy.bind(this);
     this.orderBy = this.orderBy.bind(this);
     
     this.searchHandler = this.searchHandler.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
  
 
@@ -31,7 +33,7 @@ class App extends Component {
         country: Faker.address.country(),
         phone: Faker.phone.phoneNumber(),
         ip: Faker.internet.ip(),   
-        city: Faker.address.city(),  
+        role: Faker.random.arrayElement(['Student', 'Mentor', 'Activist']),  
       }
       this.setState(prevState => ({
         users: [...prevState.users, user],
@@ -65,13 +67,15 @@ dataSearch(term) {
   }
 }  
   
+handleChange() {
+  this.setState ({ cheeseIsReady: !this.state.cheeseIsReady  })
+  console.log(this.state.cheeseIsReady);
+}   
 
-   
 
 
  searchHandler (e) {
   this.setState({
-    //users: filter,
     term: e.target.value
   });
  }
@@ -84,6 +88,9 @@ dataSearch(term) {
     term={this.state.term}
     dataSearch= {this.dataSearch}
     searchHandler = {this.searchHandler}
+    handleChange = {this.handleChange}
+    cheeseIsReady = {this.state.cheeseIsReady}
+    //toggleFilter = {this.toggleFilter}
 
     />
 

@@ -4,7 +4,7 @@ import './Table.css';
 import Faker from 'faker';
 import Search from '../Search';
 import { user } from  '../../App';
-
+import Toggle from '../Toggle';
 class Table extends Component {
     
        
@@ -12,7 +12,7 @@ class Table extends Component {
         return (
           <tr  >
             <td>{user.name}</td>
-            <td>{user.city}</td>
+            <td>{user.role}</td>
             <td>{user.date}</td>
             <td>{user.country} </td>
             <td>{user.phone}</td>
@@ -47,7 +47,7 @@ class Table extends Component {
     </div>
           </th>
 
-          <th>City </th>
+          <th>Role </th>
 
           <th > 
           <div className="title" >
@@ -80,7 +80,12 @@ class Table extends Component {
           </div> 
 
           </th>
-          <th>Active</th>
+          <th>Active
+            <Toggle 
+            handleChange= {this.props.handleChange}
+            cheeseIsReady = {this.props.cheeseIsReady}
+            />
+          </th>
           <th>
             
             <div className="title" >
