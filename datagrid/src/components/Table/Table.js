@@ -5,6 +5,9 @@ import Faker from 'faker';
 import Search from '../Search';
 import { user } from  '../../App';
 import Toggle from '../Toggle';
+import SearchIcon from '../SearchIcon';
+import SortButton from '../SortButton';
+import Dropdown from '../Dropdown';
 class Table extends Component {
     
        
@@ -30,24 +33,31 @@ class Table extends Component {
           <th >
           <div className="title" >
             <p>Name</p>
-          <div className="buttons">
-            <button className="sortButton" onClick={ () => this.props.sortBy('name') } ><img src="https://icon-icons.com/icons2/10/PNG/32/uparrow_arriba_1538.png" alt="icon"/></button> 
-            <button className="sortButton" onClick={ () => this.props.orderBy('name') } ><img src="https://icon-icons.com/icons2/10/PNG/32/arrowdown_flech_1539.png" alt="icon"/></button>
-          </div>
+          <SearchIcon />  
+          <SortButton 
+          name= 'name'
+          sortBy= {this.props.sortBy}
+          orderBy = {this.props.orderBy}
+          />
+          
           </div>
           
           
           <div className="searchbar form-group">
       <input
+        id ="nameInput" 
         type="text"
         className="form-control"
         placeholder="Search people by name..."
         onChange={this.props.searchHandler}
+        
       />
     </div>
           </th>
 
-          <th>Role </th>
+          <th><Dropdown
+          value={this.props.value}
+          dropdownChange={this.props.dropdownChange}/></th>
 
           <th > 
           <div className="title" >

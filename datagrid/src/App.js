@@ -15,12 +15,14 @@ class App extends Component {
       users: [],
       term: '',
       cheeseIsReady: false,
+      value: 'role', 
     }
     this.sortBy = this.sortBy.bind(this);
     this.orderBy = this.orderBy.bind(this);
     
     this.searchHandler = this.searchHandler.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.dropdownChange = this.dropdownChange.bind(this); 
   }
  
 
@@ -66,6 +68,10 @@ dataSearch(term) {
     return x.name.toLowerCase().includes(term.toLowerCase()) || !term;
   }
 }  
+
+dropdownChange(event) {
+  this.setState({value: event.target.value});
+}
   
 handleChange() {
   this.setState ({ cheeseIsReady: !this.state.cheeseIsReady  })
@@ -90,6 +96,7 @@ handleChange() {
     searchHandler = {this.searchHandler}
     handleChange = {this.handleChange}
     cheeseIsReady = {this.state.cheeseIsReady}
+    dropdownChange = {this.dropdownChange}
     //toggleFilter = {this.toggleFilter}
 
     />
