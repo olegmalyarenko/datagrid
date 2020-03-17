@@ -3,7 +3,7 @@ import * as ReactBootStrap from 'react-bootstrap';
 import React, { Component } from 'react';
 import Faker from 'faker';
 import Table from './components/Table';
-import SortButton from './components/SortButton';
+import SortButton from './components/SortUpButton';
 //import  _  from 'lodash';
 const _ = require('lodash');
 

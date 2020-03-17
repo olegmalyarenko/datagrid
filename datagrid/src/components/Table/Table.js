@@ -6,7 +6,8 @@ import Search from '../Search';
 import { user } from  '../../App';
 import Toggle from '../Toggle';
 import SearchIcon from '../SearchIcon';
-import SortButton from '../SortButton';
+import SortUpButton from '../SortUpButton';
+import SortDownButton from '../SortDownButton';
 import Dropdown from '../Dropdown';
 class Table extends Component {
     
@@ -35,8 +36,8 @@ class Table extends Component {
           <div className="title" >
             <p>Name</p>
             <div className="buttons">
-            <button className="sortButton" onClick={ (e) => this.props.sortBy('name', e) } ><img className="sortButton" src="https://icon-icons.com/icons2/10/PNG/32/uparrow_arriba_1538.png" alt="icon"/></button> 
-            <button className="sortButton" onClick={ (e) => this.props.orderBy('name', e) } ><img className="sortButton" src="https://icon-icons.com/icons2/10/PNG/32/arrowdown_flech_1539.png" alt="icon"/></button>
+            <SortUpButton action={ (e) => this.props.sortBy('name', e) } />
+            <SortDownButton action={ (e) => this.props.orderBy('name', e) } />
           </div>
           
           
@@ -56,8 +57,8 @@ class Table extends Component {
           <div className="title" >
             <p>Registration</p>
           <div className="buttons">
-            <button className="sortButton" onClick={ (e) => this.props.sortBy('date', e) } ><img className="sortButton" src="https://icon-icons.com/icons2/10/PNG/32/uparrow_arriba_1538.png" alt="icon"/></button> 
-            <button className="sortButton" onClick={ (e) => this.props.orderBy('date', e) } ><img className="sortButton" src="https://icon-icons.com/icons2/10/PNG/32/arrowdown_flech_1539.png" alt="icon"/></button>
+          <SortUpButton action={ (e) => this.props.sortBy('date', e) } />
+          <SortDownButton action={ (e) => this.props.orderBy('date', e) } />
           </div>
           </div>
             </th>
@@ -67,8 +68,8 @@ class Table extends Component {
           <div className="title" >
             <p>Country</p>
            <div className="buttons">
-            <button className="sortButton" onClick={ (e) => this.props.sortBy('country', e) } ><img className="sortButton" src="https://icon-icons.com/icons2/10/PNG/32/uparrow_arriba_1538.png" alt="icon"/></button> 
-            <button className="sortButton" onClick={ (e) => this.props.orderBy('country', e) } ><img className="sortButton" src="https://icon-icons.com/icons2/10/PNG/32/arrowdown_flech_1539.png" alt="icon"/></button>
+           <SortUpButton action={ (e) => this.props.sortBy('country', e) } /> 
+           <SortDownButton action={ (e) => this.props.orderBy('country', e) } />
           </div>
           </div>
           </th>
@@ -77,8 +78,8 @@ class Table extends Component {
            <div className="title" >
             <p>Phone </p>
           <div className="buttons">
-            <button className="sortButton" onClick={ (e) => this.props.sortBy('phone', e) } ><img className="sortButton" src="https://icon-icons.com/icons2/10/PNG/32/uparrow_arriba_1538.png" alt="icon"/></button> 
-            <button className="sortButton" onClick={ (e) => this.props.orderBy('phone', e) } ><img className="sortButton" src="https://icon-icons.com/icons2/10/PNG/32/arrowdown_flech_1539.png" alt="icon"/></button>
+          <SortUpButton action={ (e) => this.props.sortBy('phone', e) } /> 
+          <SortDownButton action={ (e) => this.props.orderBy('phone', e) } />
           </div>
           </div> 
 
@@ -94,8 +95,8 @@ class Table extends Component {
             <div className="title" >
             <p>IP</p>
           <div className="buttons">
-            <button className="sortButton" onClick={ (e) => this.props.sortBy('ip', e) } ><img className="sortButton" src="https://icon-icons.com/icons2/10/PNG/32/uparrow_arriba_1538.png" alt="icon"/></button> 
-            <button className="sortButton" onClick={ (e) => this.props.orderBy('ip', e) } ><img className="sortButton" src="https://icon-icons.com/icons2/10/PNG/32/arrowdown_flech_1539.png" alt="icon"/></button>
+            <SortUpButton action={ (e) => this.props.sortBy('ip', e) } /> 
+            <SortDownButton action={ (e) => this.props.orderBy('ip', e) } />
           </div>
           </div> 
 
