@@ -14,7 +14,7 @@ class App extends Component {
     this.state = {
       users: [],
       term: '',
-      cheeseIsReady: false,
+      checked: false,
       value: '', 
     }
     this.sortBy = this.sortBy.bind(this);
@@ -24,6 +24,8 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.dropdownChange = this.dropdownChange.bind(this); 
     this.dropdownChoosen = this.dropdownChoosen.bind(this);
+    this.toggleFilter = this.toggleFilter.bind(this);
+    
   }
  
 
@@ -49,10 +51,10 @@ class App extends Component {
 
   sortBy(key) {
        
-      const array = [...this.state.users]; //приравниваю новый массив к стейту
-      const sortArr = _.sortBy(array, [key]);  //сортирую значения массива
-       this.setState ({ users: sortArr })   //приравниваю отрортированную коллекцию к стейту
-       console.log(this.state.users);
+      const array = [...this.state.users]; 
+      const sortArr = _.sortBy(array, [key]);  
+       this.setState ({ users: sortArr });   
+       
   }
   
   orderBy(key) {
@@ -60,7 +62,7 @@ class App extends Component {
     const array = [...this.state.users]; 
     const sortArr = _.orderBy(array, [key], ['desc']); 
      this.setState ({ users: sortArr })   
-     console.log(this.state.users);
+     
      
 }
 dataSearch(term) {
@@ -80,16 +82,28 @@ dropdownChoosen(value) {
   }
 }  
 
+toggleFilter(checked) {
+  console.log(checked);
+  return function x (x) {
+    if (checked ===  true) {
+      console.log(checked);
+    return x.boolean.includes('Yes');
+    }
+    return !checked;
+  }
+}  
+
+
 dropdownChange(event) {
   this.setState({value: event.target.value});
-  console.log(this.state.value);
+  
 }
 
 
   
 handleChange() {
-  this.setState ({ cheeseIsReady: !this.state.cheeseIsReady  })
-  console.log(this.state.cheeseIsReady);
+  this.setState ({ checked: !this.state.checked  })
+  
 }   
 
 
@@ -104,16 +118,17 @@ handleChange() {
     return <Table   users={this.state.users}
     term = {this.state.term}
     value = {this.state.value}
+    checked = {this.state.checked}
+
     sortBy={this.sortBy}
     orderBy = {this.orderBy}
-    term={this.state.term}
     dataSearch= {this.dataSearch}
     searchHandler = {this.searchHandler}
     handleChange = {this.handleChange}
-    cheeseIsReady = {this.state.cheeseIsReady}
     dropdownChange = {this.dropdownChange}
-    //toggleFilter = {this.toggleFilter}
+    toggleFilter = {this.toggleFilter}
     dropdownChoosen = {this.dropdownChoosen}
+    
 
     />
 

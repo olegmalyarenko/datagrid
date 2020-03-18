@@ -26,7 +26,7 @@ class Table extends Component {
       }
      
       render() {
-        console.log(this.props.value,"aa")
+        
         return <ReactBootStrap.Table 
         striped bordered hover variant="dark">
           <thead>
@@ -114,6 +114,7 @@ class Table extends Component {
       <tbody>
           {this.props.users.filter(this.props.dropdownChoosen(this.props.value))        
              
+             .filter(this.props.toggleFilter(this.props.checked)) 
             
             .filter(this.props.dataSearch(this.props.term)).map(user => this.renderUsers(user))}
       </tbody>   
