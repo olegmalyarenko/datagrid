@@ -26,6 +26,7 @@ class Table extends Component {
       }
      
       render() {
+        console.log(this.props.value,"aa")
         return <ReactBootStrap.Table 
         striped bordered hover variant="dark">
           <thead>
@@ -56,6 +57,7 @@ class Table extends Component {
           </th>
 
           <th><Dropdown
+          
           value={this.props.value}
           dropdownChange={this.props.dropdownChange}/></th>
 
@@ -110,7 +112,10 @@ class Table extends Component {
         </tr>
       </thead>
       <tbody>
-          {this.props.users.filter(this.props.dataSearch(this.props.term)).map(user => this.renderUsers(user))}
+          {this.props.users.filter(this.props.dropdownChoosen(this.props.value))        
+             
+            
+            .filter(this.props.dataSearch(this.props.term)).map(user => this.renderUsers(user))}
       </tbody>   
           </ReactBootStrap.Table>
       }

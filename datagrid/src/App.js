@@ -15,7 +15,7 @@ class App extends Component {
       users: [],
       term: '',
       cheeseIsReady: false,
-      value: 'role', 
+      value: '', 
     }
     this.sortBy = this.sortBy.bind(this);
     this.orderBy = this.orderBy.bind(this);
@@ -23,6 +23,7 @@ class App extends Component {
     this.searchHandler = this.searchHandler.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.dropdownChange = this.dropdownChange.bind(this); 
+    this.dropdownChoosen = this.dropdownChoosen.bind(this);
   }
  
 
@@ -69,9 +70,22 @@ dataSearch(term) {
   }
 }  
 
+dropdownChoosen(value) {
+   
+  return function x (x) {
+    if (value.length > 2) {
+    return x.role.includes(value) || !value;
+  }
+  return !value;
+  }
+}  
+
 dropdownChange(event) {
   this.setState({value: event.target.value});
+  console.log(this.state.value);
 }
+
+
   
 handleChange() {
   this.setState ({ cheeseIsReady: !this.state.cheeseIsReady  })
@@ -88,7 +102,8 @@ handleChange() {
  
   render() {
     return <Table   users={this.state.users}
-    value = {this.props.term}
+    term = {this.state.term}
+    value = {this.state.value}
     sortBy={this.sortBy}
     orderBy = {this.orderBy}
     term={this.state.term}
@@ -98,6 +113,7 @@ handleChange() {
     cheeseIsReady = {this.state.cheeseIsReady}
     dropdownChange = {this.dropdownChange}
     //toggleFilter = {this.toggleFilter}
+    dropdownChoosen = {this.dropdownChoosen}
 
     />
 
