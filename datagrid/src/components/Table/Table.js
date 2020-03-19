@@ -28,32 +28,23 @@ class Table extends Component {
       render() {
         
         return <ReactBootStrap.Table 
-        striped bordered hover variant="dark">
-          <thead>
+        striped bordered hover variant="dark" className = "table table-fixed">
+          <thead className ='sticky'>
         <tr>
           <th >
           <div className="title" >
             <p>Name</p>
-          <SearchIcon />  
-          <SortButton 
-          name= 'name'
-          sortBy= {this.props.sortBy}
-          orderBy = {this.props.orderBy}
-          />
-          
+            <div className="buttons">
+            <button className="sortButton" onClick={ () => this.props.sortBy('date') } ><img src="https://icon-icons.com/icons2/10/PNG/32/uparrow_arriba_1538.png" alt="icon"/></button> 
+            <button className="sortButton" onClick={ () => this.props.orderBy('date') } ><img src="https://icon-icons.com/icons2/10/PNG/32/arrowdown_flech_1539.png" alt="icon"/></button>
           </div>
           
           
+          </div>
+                  
           <div className="searchbar form-group">
-      <input
-        id ="nameInput" 
-        type="text"
-        className="form-control"
-        placeholder="Search people by name..."
-        onChange={this.props.searchHandler}
-        
-      />
-    </div>
+            <Search searchHandler={this.props.searchHandler}/>
+          </div>
           </th>
 
           <th><Dropdown
@@ -111,7 +102,7 @@ class Table extends Component {
           </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody >
           {this.props.users.filter(this.props.dropdownChoosen(this.props.value))        
              
              .filter(this.props.toggleFilter(this.props.checked)) 

@@ -3,6 +3,7 @@ import * as ReactBootStrap from 'react-bootstrap';
 import React, { Component } from 'react';
 import Faker from 'faker';
 import Table from './components/Table';
+import SortButton from './components/SortButton';
 //import  _  from 'lodash';
 const _ = require('lodash');
 
@@ -49,12 +50,17 @@ class App extends Component {
   }
   
 
-  sortBy(key) {
+  sortBy(key, event) {
        
       const array = [...this.state.users]; 
       const sortArr = _.sortBy(array, [key]);  
-       this.setState ({ users: sortArr });   
+      this.setState ({ users: sortArr }); 
+      
        
+      Array.from(document.querySelectorAll('.sortButton')).forEach(element =>
+        element.classList.remove('active-button') || null,
+      );
+      this.classList.add('active-button'); //проблемка
   }
   
   orderBy(key) {
