@@ -2,16 +2,19 @@ import React from 'react';
 import './SearchIcon.css'
 
 
-export default ({  }) => {  
+export default () => {  
    const showInput = () => {
-        const input = document.getElementById('nameInput');
-        if (input.style.display = 'block')  {
+        const input = document.getElementsByClassName('search');
+        if (input.style.display === 'none') {
+            input.style.display = 'block';
+        } 
+       
+       
+        if (input.style.display === 'block')  {
             input.style.display = 'none'  
           }
           
-        if (input.style.display = 'none') {
-            input.style.display = 'block';
-        } 
+        
         
         
     }

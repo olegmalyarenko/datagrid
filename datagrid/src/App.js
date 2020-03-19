@@ -50,24 +50,28 @@ class App extends Component {
   }
   
 
-  sortBy(key, event) {
+  sortBy(key, e) {
        
       const array = [...this.state.users]; 
       const sortArr = _.sortBy(array, [key]);  
       this.setState ({ users: sortArr }); 
-      
-       
-      Array.from(document.querySelectorAll('.sortButton')).forEach(element =>
+             
+       Array.from(document.querySelectorAll('.sortButton')).forEach(element =>
         element.classList.remove('active-button') || null,
       );
-      this.classList.add('active-button'); //проблемка
+      e.target.classList.add('active-button');
   }
   
-  orderBy(key) {
+  orderBy(key, e) {
        
     const array = [...this.state.users]; 
     const sortArr = _.orderBy(array, [key], ['desc']); 
-     this.setState ({ users: sortArr })   
+     this.setState ({ users: sortArr })  
+     
+     Array.from(document.querySelectorAll('.sortButton')).forEach(element =>
+      element.classList.remove('active-button') || null,
+    );
+    e.target.classList.add('active-button');
      
      
 }
@@ -89,10 +93,10 @@ dropdownChoosen(value) {
 }  
 
 toggleFilter(checked) {
-  console.log(checked);
+  
   return function x (x) {
     if (checked ===  true) {
-      console.log(checked);
+     
     return x.boolean.includes('Yes');
     }
     return !checked;
